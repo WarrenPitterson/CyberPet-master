@@ -6,10 +6,12 @@ namespace CyberPet.Business.Logic
 {
     public class Program
     {
-        public CyberPetStatus pet = new CyberPetStatus();
-
         static void Main(string[] args)
         {
+
+            CyberPetStatus pet = new CyberPetStatus();
+            CatCyberPetInteractions interactions = new CatCyberPetInteractions();
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("What is the name of your pet?");
             Console.ResetColor();
@@ -18,37 +20,37 @@ namespace CyberPet.Business.Logic
             string petName = Console.ReadLine();
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Pet name is {petName} ");
+            Console.WriteLine("Would you like to play, eat or let them sleep");
             Console.ResetColor();
-            Console.ReadLine();
 
-            while (true)
+            for (var i = 1; i < 100; i++)
             {
-
-                Console.WriteLine("Would you like to play, feed, let them sleep or Quit");
-                Console.ReadLine();
-
                 var input = Console.ReadLine();
-
                 switch (input)
                 {
                     case "play":
-                        Console.WriteLine($"{petName} has been fed");
+                        interactions.Play(pet);
+                        Console.WriteLine($"{petName} has enjoyed the playtime, Boredom level is {pet.Boredom}\r\n");
                         break;
                     case "sleep":
-                        Console.WriteLine($"{petName} has sleeping");
+                        interactions.Sleep(pet);
+                        Console.WriteLine($"{petName} is sleeping, Tirdeness level is {pet.Tiredness}\r\n");
                         break;
                     case "eat":
-                        Console.WriteLine($"{petName} has enjoyed his food");
+                        interactions.Eat(pet);
+                        Console.WriteLine($"{petName} is enjoyed thier food, Hunger level is {pet.Hunger}\r\n");
                         break;
                     default:
-                            break;
-                }
+                        Console.WriteLine("This is the end!!");
+                        break;
 
+                }
+                string petStats = $"Pet name : {petName} \r\nHunger level: {pet.Hunger} \r\nTiredness level: {pet.Tiredness} \r\nBoredom Level: {pet.Boredom} ";
+
+                Console.WriteLine(petStats);
 
             }
         }
-
     }
 }
 
