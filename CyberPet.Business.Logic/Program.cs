@@ -12,17 +12,32 @@ namespace CyberPet.Business.Logic
             CyberPetStatus pet = new CyberPetStatus();
             CatCyberPetInteractions interactions = new CatCyberPetInteractions();
 
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Welcome to CyberPet, please give your pet a name");
             Console.ResetColor();
 
+            string petName = "";
+                       
+            bool validPetName = false;
 
-            string petName = Console.ReadLine();
+            while (validPetName == false)
+            {
+               petName = Console.ReadLine();
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Would you like to play, eat or let them sleep");
-            Console.ResetColor();
+                if (!string.IsNullOrWhiteSpace(petName))
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Would you like to play, eat or let them sleep");
+                    Console.ResetColor();
+                    validPetName = true;
+                }
 
+                else
+                {
+                    Console.WriteLine("Please enter a valid Name");
+                }
+            }
 
 
             for (var i = 1; i < 100; i++)
